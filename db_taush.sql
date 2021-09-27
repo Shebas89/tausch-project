@@ -8,7 +8,7 @@ CREATE TABLE `dbtausch`.`tausch-productos` (
 	`nombre` varchar(100) NOT NULL,
 	`categoria` varchar(100) NOT NULL,
 	`cantidad` INT NOT NULL,
-	`medida` INT NOT NULL,
+	`medida` varchar(30) NOT NULL,
 	`direccion` varchar(100) NOT NULL,
 	`ciudad` varchar(30) NOT NULL,
 	`id_usuario` INT NOT NULL,
