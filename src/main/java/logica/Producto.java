@@ -44,6 +44,23 @@ public class Producto {
         this.foto = foto;
     }
 
+    public Producto(int id, int disponible, String categoria, int cantidad, String medida, String direccion, String ciudad, int id_usuario, String fecha_publicacion, String fecha_disponible, String descripcion, String estado, String foto) {
+        this.id = id;
+        this.disponible = disponible;
+        this.nombre = nombre;
+        this.categoria = categoria;
+        this.cantidad = cantidad;
+        this.medida = medida;
+        this.direccion = direccion;
+        this.ciudad = ciudad;
+        this.id_usuario = id_usuario;
+        this.fecha_publicacion = fecha_publicacion;
+        this.fecha_disponible = fecha_disponible;
+        this.descripcion = descripcion;
+        this.estado = estado;
+        this.foto = "";
+    }
+
     public int getId() {
         return id;
     }

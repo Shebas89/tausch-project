@@ -1,15 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/**
- *
- * @author svelandia
- */
-
-
 package persistencia;
 
 import java.sql.Connection;
@@ -17,35 +5,35 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
+/**
+ *
+ * @author svelandia
+ */
 public class ConexionBD {
-    private String conectorInstalado = "jdbc:mysql:";
-    private String host = "localhost:3306";
-    private String baseDatos = "dbtausch";
-    private String username = "root";
-    private String password = "root";
+    private final String conectorInstalado = "jdbc:mysql:";
+    private final String host = "localhost:3306";
+    private final String baseDatos = "dbtausch";
+    private final String username = "root";
+    private final String password = "root"; 
     private Connection conexion;
     private Statement ejecutor;
 
     public ConexionBD() {
         conectar();
     }
-    
-    
+
     public boolean isConectado() {
         return (this.conexion != null);
     }
     
-    
-    public void conectar()
-    {
+    public void conectar(){
         try
         {
             String cadenaConexion = conectorInstalado + "//" + host + "/" + baseDatos;
             Class.forName("com.mysql.cj.jdbc.Driver");
             conexion = DriverManager.getConnection(cadenaConexion, username, password);
             ejecutor = conexion.createStatement();
-            ejecutor.setQueryTimeout(30);  // set timeout to 30 sec.
-            //System.out.println("conexión creada: "+conexion);
+            ejecutor.setQueryTimeout(30);
         }
         catch(Exception e)
         {
@@ -53,9 +41,7 @@ public class ConexionBD {
         }
     }
     
-    
-    public ResultSet ejecutarQuery(String sql)
-    {
+    public ResultSet ejecutarQuery(String sql) {
         ResultSet rs = null;
         try
         {
@@ -68,13 +54,11 @@ public class ConexionBD {
         return rs;
     }
     
-    
-    public ResultSet ejecutarUpdate(String sql)
-    {
+    public ResultSet ejecutarInsert(String sql) {
         ResultSet rs = null;
         try
         {
-            int cant = ejecutor.executeUpdate(sql);
+            int cant = ejecutor.executeUpdate(sql, Statement.RETURN_GENERATED_KEYS);
             if (cant > 0) {
                 rs = ejecutor.getGeneratedKeys();
             }
@@ -86,9 +70,20 @@ public class ConexionBD {
         return rs;
     }
     
+    public int ejecutarUpdate(String sql) {
+        int cant = 0;
+        try
+        {
+            cant = ejecutor.executeUpdate(sql);
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+        return cant;
+    }
     
-    public void desconectar()
-    {
+    public void desconectar() {
         try {
             conexion.close();
             conexion = null;

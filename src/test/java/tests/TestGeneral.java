@@ -33,21 +33,15 @@ public class TestGeneral {
     }
     
     @Test
-    public void verificarCargaTiposProductos() {
-        ProductoDAO dao = new ProductoDAO();
-        //Assert.assertTrue(dao.cargarTiposProductos().size() > 0, "No se cargaron datos de los tipos de juguetes. ");
-    }
-    
-    @Test
     public void verificarInsercionProducto() {
         ProductoDAO dao = new ProductoDAO();
-        /* Producto j = new Producto("Producto de prueba", 1, "2021-01-01", 1, "Disponible");
-        int id = dao.guardarNuevoProducto(j);
+        Producto p = new Producto(1,"Producto de prueba","Categoria prueba", 1, "kg","calle 123 5 6", "Bogota", 1, "feb-12-2021","feb-28-2021","Test","test","");
+        int id = dao.guardarNuevoProducto(p);
         Assert.assertTrue(id > 0, "No se guardó dato de un juguete. ");
-        String sql = "DELETE FROM juguetes WHERE id = " + id;
+        String sql = "DELETE FROM `tausch-productos` WHERE id = " + id;
         ConexionBD con = new ConexionBD();
         int cant = con.ejecutarUpdate(sql);
         Assert.assertTrue(cant == 1, "No se logró hacer limpieza del dato de prueba de un juguete ingresado. ");
-        con.desconectar();*/
+        con.desconectar();
     }
 }
