@@ -19,9 +19,9 @@ public class ColeccionProducto {
         return lista;
     }
     
-    public boolean cargarJuguetes() {
+    public boolean cargarProducctoss() {
         ProductoDAO dao = new ProductoDAO();
-        lista = dao.consultarJuguetes();
+        lista = dao.consultarProductos();
         if (lista.size() > 0) {
             return true;
         }

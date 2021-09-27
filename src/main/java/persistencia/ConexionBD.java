@@ -20,9 +20,9 @@ import java.sql.Statement;
 public class ConexionBD {
     private String conectorInstalado = "jdbc:mysql:";
     private String host = "localhost:3306";
-    private String baseDatos = "tausch-db";
-    private String username = "admin";
-    private String password = "admin";
+    private String baseDatos = "dbtausch";
+    private String username = "root";
+    private String password = "root";
     private Connection conexion;
     private Statement ejecutor;
 
