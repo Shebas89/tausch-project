@@ -7,6 +7,7 @@ package persistencia;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Date;
 import java.util.ArrayList;
 import logica.Producto;
 
@@ -33,8 +34,8 @@ public class ProductoDAO {
                 String direccion = rs.getString("fechacompra");
                 String ciudad = rs.getString("ciudad");
                 int id_usuario = rs.getInt("id_usuario");
-                String fecha_publicacion = rs.getString("fecha_publicacion");
-                String fecha_disponible = rs.getString("fecha_disponible");
+                Date fecha_publicacion = rs.getDate("fecha_publicacion");
+                Date fecha_disponible = rs.getDate("fecha_disponible");
                 String descripcion = rs.getString("descripcion");
                 String estado = rs.getString("estado");
                 String imagen = rs.getString("imagen");
@@ -55,7 +56,7 @@ public class ProductoDAO {
         String sql = "SELECT id, disponible, nombre, categoria, cantidad, medida, " +
                      "direccion, ciudad, id_usuario, fecha_publicacion, fecha_disponible, " +
                      "descripcion, estado FROM `tausch-productos` "+
-                     "WHERE id = " + idAConsultar + " ";
+                     "WHERE id = " + idAConsultar + ";";
         ResultSet rs = con.ejecutarQuery(sql);
         try {
             if (rs.next()) {
@@ -68,8 +69,8 @@ public class ProductoDAO {
                 String direccion = rs.getString("fechacompra");
                 String ciudad = rs.getString("ciudad");
                 int id_usuario = rs.getInt("id_usuario");
-                String fecha_publicacion = rs.getString("fecha_publicacion");
-                String fecha_disponible = rs.getString("fecha_disponible");
+                Date fecha_publicacion = rs.getDate("fecha_publicacion");
+                Date fecha_disponible = rs.getDate("fecha_disponible");
                 String descripcion = rs.getString("descripcion");
                 String estado = rs.getString("estado");
                 String imagen = rs.getString("imagen");
@@ -106,8 +107,8 @@ public class ProductoDAO {
                 String direccion = rs.getString("fechacompra");
                 String ciudad = rs.getString("ciudad");
                 int id_usuario = rs.getInt("id_usuario");
-                String fecha_publicacion = rs.getString("fecha_publicacion");
-                String fecha_disponible = rs.getString("fecha_disponible");
+                Date fecha_publicacion = rs.getDate("fecha_publicacion");
+                Date fecha_disponible = rs.getDate("fecha_disponible");
                 String descripcion = rs.getString("descripcion");
                 String estado = rs.getString("estado");
                 String imagen = rs.getString("imagen");
@@ -132,8 +133,8 @@ public class ProductoDAO {
         String direccion = p.getDireccion();
         String ciudad = p.getCiudad();
         int id_usuario = p.getId_usuario();
-        String fecha_publicacion = p.getFecha_publicacion();
-        String fecha_disponible = p.getFecha_disponible();
+        Date fecha_publicacion = p.getFecha_publicacion();
+        Date fecha_disponible = p.getFecha_disponible();
         String descripcion = p.getDescripcion();
         String estado = p.getEstado();
         String imagen = p.getFoto();
@@ -167,8 +168,8 @@ public class ProductoDAO {
         String direccion = p.getDireccion();
         String ciudad = p.getCiudad();
         int id_usuario = p.getId_usuario();
-        String fecha_publicacion = p.getFecha_publicacion();
-        String fecha_disponible = p.getFecha_disponible();
+        Date fecha_publicacion = p.getFecha_publicacion();
+        Date fecha_disponible = p.getFecha_disponible();
         String descripcion = p.getDescripcion();
         String estado = p.getEstado();
         String imagen = p.getFoto();

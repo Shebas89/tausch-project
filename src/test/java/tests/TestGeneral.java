@@ -6,11 +6,17 @@
 package tests;
 
 import logica.Producto;
+import logica.Usuario;
 import org.testng.Assert;
 import org.testng.annotations.Ignore;
 import org.testng.annotations.Test;
 import persistencia.ConexionBD;
 import persistencia.ProductoDAO;
+import persistencia.UsuarioDAO;
+import java.sql.Date;  
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 
 /**
  *
@@ -18,7 +24,7 @@ import persistencia.ProductoDAO;
  */
 public class TestGeneral {
     
-    @Ignore
+    @Test
     public void verificarConexion() {
         ConexionBD con = new ConexionBD();
         Assert.assertTrue(con.isConectado(), "No hay conexión creada. ");
@@ -29,19 +35,35 @@ public class TestGeneral {
     @Ignore
     public void verificarCargaProductos() {
         ProductoDAO dao = new ProductoDAO();
-        Assert.assertTrue(dao.consultarProductos().size() > 0, "No se cargaron datos de juguetes. ");
+        Assert.assertTrue(dao.consultarProductos().size() > 0, "No se cargaron datos de productos. ");
     }
     
     @Test
-    public void verificarInsercionProducto() {
+    public void verificarInsercionProducto() throws ParseException {
         ProductoDAO dao = new ProductoDAO();
-        Producto p = new Producto(1,"Producto de prueba","Categoria prueba", 1, "kg","calle 123 5 6", "Bogota", 1, "feb-12-2021","feb-28-2021","Test","test","");
+        DateFormat df = new SimpleDateFormat("MM-dd-yyyy");
+        Date sqlDate1 = new java.sql.Date(df.parse("02-04-2020").getTime());
+        Date sqlDate2 = new java.sql.Date(df.parse("02-28-2020").getTime());
+        Producto p = new Producto(1,"Producto de prueba","Categoria prueba", 1, "kg","direccion test", "Ciudad test", 1, sqlDate1, sqlDate2,"descripcion test","estado test","imagen test");
         int id = dao.guardarNuevoProducto(p);
-        Assert.assertTrue(id > 0, "No se guardó dato de un juguete. ");
+        Assert.assertTrue(id > 0, "No se guardó dato de un producto. ");
         String sql = "DELETE FROM `tausch-productos` WHERE id = " + id;
         ConexionBD con = new ConexionBD();
         int cant = con.ejecutarUpdate(sql);
-        Assert.assertTrue(cant == 1, "No se logró hacer limpieza del dato de prueba de un juguete ingresado. ");
+        Assert.assertTrue(cant == 1, "No se logró hacer limpieza del dato de prueba de un producto ingresado. ");
+        con.desconectar();
+    }
+    
+    @Test
+    public void verificarInsercionUsuario() {
+        UsuarioDAO dao = new UsuarioDAO();
+        Usuario u = new Usuario(0,"User","Test","Utest","cc",12389,"user@test.com",32067,"test-password",0);
+        int id = dao.guardarNuevoUsuario(u);
+        Assert.assertTrue(id > 0, "No se guardó dato de un usuario. ");
+        String sql = "DELETE FROM `tausch-usuarios` WHERE id = " + id;
+        ConexionBD con = new ConexionBD();
+        int cant = con.ejecutarUpdate(sql);
+        Assert.assertTrue(cant == 1, "No se logró hacer limpieza del dato de prueba de un usuario ingresado. ");
         con.desconectar();
     }
 }

@@ -5,6 +5,8 @@
  */
 package logica;
 
+import java.sql.Date;
+
 /**
  *
  * @author svelandia
@@ -19,8 +21,8 @@ public class Producto {
     private String direccion;
     private String ciudad;
     private int id_usuario;
-    private String fecha_publicacion;
-    private String fecha_disponible;
+    private Date fecha_publicacion;
+    private Date fecha_disponible;
     private String descripcion;
     private String estado;
     private String foto;
@@ -28,7 +30,7 @@ public class Producto {
     public Producto() {
     }
 
-    public Producto(int disponible, String nombre, String categoria, int cantidad, String medida, String direccion, String ciudad, int id_usuario, String fecha_publicacion, String fecha_disponible, String descripcion, String estado, String foto) {
+    public Producto(int disponible, String nombre, String categoria, int cantidad, String medida, String direccion, String ciudad, int id_usuario, Date fecha_publicacion, Date fecha_disponible, String descripcion, String estado, String foto) {
         this.disponible = disponible;
         this.nombre = nombre;
         this.categoria = categoria;
@@ -44,7 +46,7 @@ public class Producto {
         this.foto = foto;
     }
 
-    public Producto(int id, int disponible, String categoria, int cantidad, String medida, String direccion, String ciudad, int id_usuario, String fecha_publicacion, String fecha_disponible, String descripcion, String estado, String foto) {
+    public Producto(int id, int disponible, String categoria, int cantidad, String medida, String direccion, String ciudad, int id_usuario, Date fecha_publicacion, Date fecha_disponible, String descripcion, String estado, String foto) {
         this.id = id;
         this.disponible = disponible;
         this.nombre = nombre;
@@ -133,19 +135,19 @@ public class Producto {
         this.id_usuario = id_usuario;
     }
 
-    public String getFecha_publicacion() {
+    public Date getFecha_publicacion() {
         return fecha_publicacion;
     }
 
-    public void setFecha_publicacion(String fecha_publicacion) {
+    public void setFecha_publicacion(Date fecha_publicacion) {
         this.fecha_publicacion = fecha_publicacion;
     }
 
-    public String getFecha_disponible() {
+    public Date getFecha_disponible() {
         return fecha_disponible;
     }
 
-    public void setFecha_disponible(String fecha_disponible) {
+    public void setFecha_disponible(Date fecha_disponible) {
         this.fecha_disponible = fecha_disponible;
     }
 
