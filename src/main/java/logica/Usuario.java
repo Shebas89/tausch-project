@@ -4,6 +4,8 @@
  */
 package logica;
 
+import java.sql.Date; 
+
 /**
  *
  * @author svelandia
@@ -18,13 +20,14 @@ public class Usuario {
     private long documento_identidad;
     private String email;
     private long telefono;
+    private Date fecha_nacimiento;
     private String contrasena;
     private int contrasena_recuperacion;
 
     public Usuario() {
     }
 
-    public Usuario(int id, int eliminado, String nombre, String apellido, String Username, String tipo_documento, long documento_identidad, String email, long telefono, String contrasena, int contrasena_recuperacion) {
+    public Usuario(int id, int eliminado, String nombre, String apellido, String Username, String tipo_documento, long documento_identidad, String email, long telefono, Date fecha_nacimiento, String contrasena, int contrasena_recuperacion) {
         this.id = id;
         this.eliminado = eliminado;
         this.nombre = nombre;
@@ -34,11 +37,12 @@ public class Usuario {
         this.documento_identidad = documento_identidad;
         this.email = email;
         this.telefono = telefono;
+        this.fecha_nacimiento = fecha_nacimiento;
         this.contrasena = contrasena;
         this.contrasena_recuperacion = contrasena_recuperacion;
     }
 
-    public Usuario(int eliminado, String nombre, String apellido, String Username, String tipo_documento, long documento_identidad, String email, long telefono, String contrasena, int contrasena_recuperacion) {
+    public Usuario(int eliminado, String nombre, String apellido, String Username, String tipo_documento, long documento_identidad, String email, long telefono, Date fecha_nacimiento, String contrasena, int contrasena_recuperacion) {
         this.eliminado = eliminado;
         this.nombre = nombre;
         this.apellido = apellido;
@@ -47,8 +51,23 @@ public class Usuario {
         this.documento_identidad = documento_identidad;
         this.email = email;
         this.telefono = telefono;
+        this.fecha_nacimiento = fecha_nacimiento;
         this.contrasena = contrasena;
         this.contrasena_recuperacion = contrasena_recuperacion;
+    }
+
+    public Usuario(String nombre, String apellido, String username, String tipo_documento, int documento_identidad, String email, int telefono, Date fecha_nacimiento, String contrasena) {
+        this.eliminado = 0;
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.Username = username;
+        this.tipo_documento = tipo_documento;
+        this.documento_identidad = documento_identidad;
+        this.email = email;
+        this.telefono = telefono;
+        this.fecha_nacimiento = fecha_nacimiento;
+        this.contrasena = contrasena;
+        this.contrasena_recuperacion = 0;
     }
 
     public int getId() {
@@ -91,14 +110,6 @@ public class Usuario {
         this.Username = Username;
     }
 
-    public String gettipo_documento() {
-        return tipo_documento;
-    }
-
-    public void settipo_documento(String tipo_documento) {
-        this.tipo_documento = tipo_documento;
-    }
-
     public long getDocumento_identidad() {
         return documento_identidad;
     }
@@ -139,8 +150,24 @@ public class Usuario {
         this.contrasena_recuperacion = contrasena_recuperacion;
     }
 
+    public String getTipo_documento() {
+        return tipo_documento;
+    }
+
+    public void setTipo_documento(String tipo_documento) {
+        this.tipo_documento = tipo_documento;
+    }
+
+    public Date getFecha_nacimiento() {
+        return fecha_nacimiento;
+    }
+
+    public void setFecha_nacimiento(Date fecha_nacimiento) {
+        this.fecha_nacimiento = fecha_nacimiento;
+    }
+
     @Override
     public String toString() {
-        return "usuario{" + "id=" + id + ", eliminado=" + eliminado + ", nombre=" + nombre + ", apellido=" + apellido + ", Username=" + Username + ", tipo_documento=" + tipo_documento + ", documento_identidad=" + documento_identidad + ", email=" + email + ", telefono=" + telefono + ", contrasena=" + contrasena + ", contrasena_recuperacion=" + contrasena_recuperacion + '}';
-    }
+        return "Usuario{" + "id=" + id + ", eliminado=" + eliminado + ", nombre=" + nombre + ", apellido=" + apellido + ", Username=" + Username + ", tipo_documento=" + tipo_documento + ", documento_identidad=" + documento_identidad + ", email=" + email + ", telefono=" + telefono + ", fecha_nacimiento=" + fecha_nacimiento + ", contrasena=" + contrasena + ", contrasena_recuperacion=" + contrasena_recuperacion + '}';
+    }   
 }

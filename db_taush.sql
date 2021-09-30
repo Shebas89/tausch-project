@@ -3,7 +3,7 @@ Drop database `dbtausch`;
 
 CREATE DATABASE IF NOT EXISTS `dbtausch`;
 
-# Create product tble
+# Create product table
 CREATE TABLE `dbtausch`.`tausch-productos` (
 	`id` INT auto_increment NOT NULL,
 	`disponible` INT DEFAULT 1 NOT NULL,
@@ -38,6 +38,7 @@ CREATE TABLE `dbtausch`.`tausch-usuarios` (
   `documento_identidad` int unsigned NOT NULL DEFAULT '0',
   `email` varchar(500) COLLATE utf8mb4_bin NOT NULL,
   `telefono` int unsigned NOT NULL DEFAULT '0',
+  `fecha_nacimiento` date  NOT NULL,
   `contrasena` varchar(20) COLLATE utf8mb4_bin NOT NULL,
   `contrasena_recuperacion` int NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
@@ -48,5 +49,5 @@ DEFAULT CHARSET=utf8mb4
 COLLATE=utf8mb4_bin;
 
 # add admin user
-INSERT INTO `dbtausch`.`tausch-usuarios`(eliminado, nombre, apellido, username, tipo_documento, documento_identidad, email, telefono, contrasena, contrasena_recuperacion)
-VALUES(0, 'admin', 'tausch', 'admin', 'cc', 1, 'admin@tausch.com', 3214567890, 'admin-tausch', 0);
+INSERT INTO `dbtausch`.`tausch-usuarios`(eliminado, nombre, apellido, username, tipo_documento, documento_identidad, email, telefono, fecha_nacimiento, contrasena, contrasena_recuperacion)
+VALUES(0, 'admin', 'tausch', 'admin', 'cc', 1, 'admin@tausch.com', 3214567890, STR_TO_DATE('1-01-2012', '%d-%m-%Y'), 'admin-tausch', 0);
