@@ -1,5 +1,5 @@
 # Create DB
-Drop database `dbtausch`;
+DROP database IF EXISTS `dbtausch`;
 
 CREATE DATABASE IF NOT EXISTS `dbtausch`;
 
