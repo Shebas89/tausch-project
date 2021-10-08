@@ -4,7 +4,6 @@
  */
 package persistencia;
 
-import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -24,11 +23,11 @@ public class UsuarioDAO {
         long documento_identidad = u.getDocumento_identidad();
         String email = u.getEmail();
         long telefono = u.getTelefono();
-        Date fecha_nacimiento = u.getFecha_nacimiento();
+        String fecha_nacimiento = u.getFecha_nacimiento();
         String contrasena = u.getContrasena();
         int contrasena_recuperacion = u.getContrasena_recuperacion();
         
-        String sql = "INSERT INTO `dbtausch`.`tausch-usuarios` (eliminado, nombre, apellido, username, tipo_documento, documento_identidad, email, telefono, fecha_nacimiento, contrasena, contrasena_recuperacion) "+
+        String sql = "INSERT INTO public.\"tausch-user\" (eliminado, nombre, apellido, username, tipo_documento, documento_identidad, email, telefono, fecha_nacimiento, contrasena, contrasena_recuperacion) "+
                      "VALUES ("+eliminado+",'"+nombre+"', '"+apellido+"', '"+username+"', '"+tipo_documento+"', "+documento_identidad+", '"+email+"', "+telefono+", '"+fecha_nacimiento+"', '"+contrasena+"', "+contrasena_recuperacion+");";
         ResultSet rs = con.ejecutarInsert(sql);
         int id = 0;
@@ -48,7 +47,7 @@ public class UsuarioDAO {
         ArrayList<Usuario> lista = new ArrayList<>();
         ConexionBD con = new ConexionBD();
         String query = "SELECT id, eliminado, nombre, apellido, username, tipo_documento, documento_identidad, email, " +
-                     "telefono, fecha_nacimiento, contrasena, contrasena_recuperacion FROM `dbtausch`.`tausch-usuarios`";
+                     "telefono, fecha_nacimiento, contrasena, contrasena_recuperacion FROM public.\"tausch-user\"";
         ResultSet rs = con.ejecutarQuery(query);
         try {
             while (rs.next()) {
@@ -61,7 +60,7 @@ public class UsuarioDAO {
                 long documento_identidad = rs.getLong("documento_identidad");
                 String email = rs.getString("email");
                 long telefono = rs.getLong("telefono");
-                Date fecha_nacimiento= rs.getDate("fecha_nacimiento");
+                String fecha_nacimiento= rs.getString("fecha_nacimiento");
                 String contrasena = rs.getString("contrasena");
                 int contrasena_recuperacion = rs.getInt("contrasena_recuperacion");
                 Usuario j = new Usuario();
@@ -79,7 +78,7 @@ public class UsuarioDAO {
         Usuario u = null;
         ConexionBD con = new ConexionBD();
         String query = "SELECT id, eliminado, nombre, apellido, username, tipo_documento, documento_identidad, email, " +
-                       "telefono, fecha_nacimiento, contrasena, contrasena_recuperacion FROM `dbtausch`.`tausch-usuarios`" +
+                       "telefono, fecha_nacimiento, contrasena, contrasena_recuperacion FROM public.\"tausch-user\"" +
                        "WHERE username = '" + usuario + "' or email = '"+ usuario +"';";
         ResultSet rs = con.ejecutarQuery(query);
         try {
@@ -93,7 +92,7 @@ public class UsuarioDAO {
                 long documento_identidad = rs.getLong("documento_identidad");
                 String email = rs.getString("email");
                 long telefono = rs.getLong("telefono");
-                Date fecha_nacimiento= rs.getDate("fecha_nacimiento");
+                String fecha_nacimiento= rs.getString("fecha_nacimiento");
                 String contrasena = rs.getString("contrasena");
                 int contrasena_recuperacion = rs.getInt("contrasena_recuperacion");
                 u = new Usuario(id,eliminado,nombre,apellido,username,tipo_documento,documento_identidad,email,telefono,fecha_nacimiento,contrasena,contrasena_recuperacion);

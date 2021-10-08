@@ -27,7 +27,12 @@
                     String usuario = request.getParameter("usuario");
                     String tdoc = request.getParameter("tdoc");
                     int nd = Integer.parseInt(request.getParameter("nd"));
-                    Date fnac;
+                    int telefono = Integer.parseInt(request.getParameter("telefono"));
+                    String fnac = request.getParameter("fnacimiento");
+                    String password = request.getParameter("password");
+                    
+                    Usuario user = new Usuario(name,last_n,usuario,tdoc,nd,email,telefono,fnac,password);
+                    
                 %>
                 <div class="form-group">
                     <label for="nombre">Nombre</label>

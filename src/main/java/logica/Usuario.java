@@ -4,8 +4,6 @@
  */
 package logica;
 
-import java.sql.Date; 
-
 /**
  *
  * @author svelandia
@@ -20,14 +18,14 @@ public class Usuario {
     private long documento_identidad;
     private String email;
     private long telefono;
-    private Date fecha_nacimiento;
+    private String fecha_nacimiento;
     private String contrasena;
     private int contrasena_recuperacion;
 
     public Usuario() {
     }
 
-    public Usuario(int id, int eliminado, String nombre, String apellido, String Username, String tipo_documento, long documento_identidad, String email, long telefono, Date fecha_nacimiento, String contrasena, int contrasena_recuperacion) {
+    public Usuario(int id, int eliminado, String nombre, String apellido, String Username, String tipo_documento, long documento_identidad, String email, long telefono, String fecha_nacimiento, String contrasena, int contrasena_recuperacion) {
         this.id = id;
         this.eliminado = eliminado;
         this.nombre = nombre;
@@ -42,7 +40,7 @@ public class Usuario {
         this.contrasena_recuperacion = contrasena_recuperacion;
     }
 
-    public Usuario(int eliminado, String nombre, String apellido, String Username, String tipo_documento, long documento_identidad, String email, long telefono, Date fecha_nacimiento, String contrasena, int contrasena_recuperacion) {
+    public Usuario(int eliminado, String nombre, String apellido, String Username, String tipo_documento, long documento_identidad, String email, long telefono, String fecha_nacimiento, String contrasena, int contrasena_recuperacion) {
         this.eliminado = eliminado;
         this.nombre = nombre;
         this.apellido = apellido;
@@ -56,7 +54,7 @@ public class Usuario {
         this.contrasena_recuperacion = contrasena_recuperacion;
     }
 
-    public Usuario(String nombre, String apellido, String username, String tipo_documento, int documento_identidad, String email, int telefono, Date fecha_nacimiento, String contrasena) {
+    public Usuario(String nombre, String apellido, String username, String tipo_documento, int documento_identidad, String email, int telefono, String fecha_nacimiento, String contrasena) {
         this.eliminado = 0;
         this.nombre = nombre;
         this.apellido = apellido;
@@ -158,11 +156,11 @@ public class Usuario {
         this.tipo_documento = tipo_documento;
     }
 
-    public Date getFecha_nacimiento() {
+    public String getFecha_nacimiento() {
         return fecha_nacimiento;
     }
 
-    public void setFecha_nacimiento(Date fecha_nacimiento) {
+    public void setFecha_nacimiento(String fecha_nacimiento) {
         this.fecha_nacimiento = fecha_nacimiento;
     }
 

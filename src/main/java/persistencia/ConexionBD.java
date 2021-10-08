@@ -10,11 +10,11 @@ import java.sql.Statement;
  * @author svelandia
  */
 public class ConexionBD {
-    private final String conectorInstalado = "jdbc:mysql:";
-    private final String host = "localhost:3306";
+    private final String conectorInstalado = "jdbc:postgresql:";
+    private final String host = "localhost:5432";
     private final String baseDatos = "dbtausch";
-    private final String username = "root";
-    private final String password = "root"; 
+    private final String username = "postgres";
+    private final String password = "postgres"; 
     private Connection conexion;
     private Statement ejecutor;
 
@@ -30,7 +30,7 @@ public class ConexionBD {
         try
         {
             String cadenaConexion = conectorInstalado + "//" + host + "/" + baseDatos;
-            Class.forName("com.mysql.cj.jdbc.Driver");
+            Class.forName("org.postgresql.Driver");
             conexion = DriverManager.getConnection(cadenaConexion, username, password);
             ejecutor = conexion.createStatement();
             ejecutor.setQueryTimeout(30);
