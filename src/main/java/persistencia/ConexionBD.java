@@ -14,7 +14,7 @@ public class ConexionBD {
     private final String host = "localhost:3306";
     private final String baseDatos = "dbtausch";
     private final String username = "root";
-    private final String password = "root"; 
+    private final String password = "password";
     private Connection conexion;
     private Statement ejecutor;
 

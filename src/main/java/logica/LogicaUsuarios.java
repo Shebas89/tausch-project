@@ -20,9 +20,18 @@ public class LogicaUsuarios {
     public boolean usuarioExiste(String user, String password){
         UsuarioDAO udao = new UsuarioDAO();
         Usuario usuario = udao.consultarUsuario(user);
-        if (usuario.getContrasena().equals(password))
-            return true;
+        if (usuario != null)
+            return usuario.getContrasena().equals(password);
         else
             return false;
     }
+
+    public boolean usuarioRegistro(String name, String last_n, String usuario, String tdoc, int nd, String email, int telefono, String fnac, String password){
+        UsuarioDAO udao = new UsuarioDAO();
+        Usuario user = new Usuario(name, last_n, usuario, tdoc, nd, email, telefono, fnac, password);
+        udao.guardarNuevoUsuario(user);
+        Usuario usersaved = udao.consultarUsuario(usuario);
+        return usersaved.getUsername().equals(usuario);
+    }
+
 }

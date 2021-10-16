@@ -24,7 +24,7 @@ public class UsuarioDAO {
         long documento_identidad = u.getDocumento_identidad();
         String email = u.getEmail();
         long telefono = u.getTelefono();
-        Date fecha_nacimiento = u.getFecha_nacimiento();
+        String fecha_nacimiento = u.getFecha_nacimiento();
         String contrasena = u.getContrasena();
         int contrasena_recuperacion = u.getContrasena_recuperacion();
         
@@ -61,7 +61,7 @@ public class UsuarioDAO {
                 long documento_identidad = rs.getLong("documento_identidad");
                 String email = rs.getString("email");
                 long telefono = rs.getLong("telefono");
-                Date fecha_nacimiento= rs.getDate("fecha_nacimiento");
+                String fecha_nacimiento= rs.getString("fecha_nacimiento");
                 String contrasena = rs.getString("contrasena");
                 int contrasena_recuperacion = rs.getInt("contrasena_recuperacion");
                 Usuario j = new Usuario();
@@ -93,14 +93,14 @@ public class UsuarioDAO {
                 long documento_identidad = rs.getLong("documento_identidad");
                 String email = rs.getString("email");
                 long telefono = rs.getLong("telefono");
-                Date fecha_nacimiento= rs.getDate("fecha_nacimiento");
+                String fecha_nacimiento= rs.getString("fecha_nacimiento");
                 String contrasena = rs.getString("contrasena");
                 int contrasena_recuperacion = rs.getInt("contrasena_recuperacion");
                 u = new Usuario(id,eliminado,nombre,apellido,username,tipo_documento,documento_identidad,email,telefono,fecha_nacimiento,contrasena,contrasena_recuperacion);
             }
         } catch (SQLException ex) {
             con.desconectar();
-            return u;
+            return null;
         }
         con.desconectar();
         return u;
