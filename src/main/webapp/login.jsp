@@ -27,15 +27,32 @@
                         if (usuario != null && password != null) {
                             LogicaUsuarios lu = new LogicaUsuarios();
                             validacion = lu.usuarioExiste(usuario, password);
-                            if (validacion)
-                                response.sendRedirect("index.html");
+                            if (validacion) {
+                                if (lu.nuevaContrasena(usuario))
+                                    response.sendRedirect("cambio_contrasena.jsp");
+                                else
+                                    response.sendRedirect("index.html");
+                            }
                         }
                     %>
 
                     <div class="form-group">
-                        <label class="form-label mt-4">Ingrese sus credenciales</label>
+                        <%
+                            if (usuario != null && password != null){
+                                if (!validacion){
+                        %>
+                        <p class="text-danger">
+                        <%
+                                    out.print(error_msg);
+                            }
+                            else
+                        %>
+                        <p></p>
+                        <%
+                        }
+                        %>
                         <div class="form-floating mb-2">
-                            <input type="text" class="form-control" name="txtuser" id="txtuser" required>
+                            <input type="text" class="form-control" name="txtuser" id="txtuser" placeholder="Nombre de usuario" required>
                             <label for="txtuser">Nombre de usuario</label>
                         </div>
                         <div class="form-floating mb-2">
@@ -44,20 +61,15 @@
                         </div>
                     </div>
 
-                    <button type="submit" name="btnSubmit" id="btnSubmit" class="btn btn-primary">Ingresar</button>
-                    <%
-                    if (usuario != null && password != null){
-                        if (!validacion){
-                    %>
-                    <p class="text-warning">
-                    <%
-                            out.println(error_msg);
-                        }
-                    }
-                    %>
-                    </p>
-                    <p>Al registrarte, aceptas nuestras Condiciones de uso y Política de privacidad.</p>
-                    <p>¿No tienes una cuenta? <a class="link" href="create-user.jsp">Registrate </a></p>
+                    <div class="col-md-12 text-center">
+                        <button type="submit" name="btnSubmit" id="btnSubmit" value="Submit" class="btn btn-success">Ingresar</button>
+                        <a href="index.html"><button type="button" name="btnCancel" id="btnCancel" value="cancel" class="btn btn-secondary">Cancelar</button></a>
+                    </div>
+
+                    <p></p>
+                    <p class="text-muted" style="text-align:center">Al registrarte, aceptas nuestras Condiciones de uso y Política de privacidad.</p>
+                    <p class="text-muted" style="text-align:center">Olvido su contraseña? <a class="link" href="forgot-password.jsp">Click here</a></p>
+                    <p class="text-muted" style="text-align:center">¿No tienes una cuenta? <a class="link" href="create-user.jsp">Registrate</a></p>
 
                 </form>
             </div>

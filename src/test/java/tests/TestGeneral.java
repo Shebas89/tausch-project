@@ -78,4 +78,22 @@ public class TestGeneral {
         Assert.assertTrue(cant == 1, "No se logró hacer limpieza del dato de prueba de un usuario ingresado. ");
         con.desconectar();
     }
+
+    @Test
+    public void verificarActualizacionUsuario() throws ParseException {
+        UsuarioDAO dao = new UsuarioDAO();
+        Usuario u = new Usuario("User","Test","Utest","cc",12389,"user@test.com",32067,"1989-10-17","test-password");
+        int id = dao.guardarNuevoUsuario(u);
+        Assert.assertTrue(id > 0, "No se guardó dato de un usuario. ");
+        Usuario u1 = dao.consultarUsuario("Utest");
+        u.setContrasena_recuperacion(1);
+        u.setContrasena("password-test");
+        int id_update = dao.actualizarUsuario(u1);
+        Assert.assertTrue(id_update > 0, "No se actualizo la informacion del usuario");
+        String sql = "DELETE FROM `tausch-usuarios` WHERE id = " + u1.getId();
+        ConexionBD con = new ConexionBD();
+        int cant = con.ejecutarUpdate(sql);
+        Assert.assertTrue(cant == 1, "No se logró hacer limpieza del dato de prueba de un usuario ingresado. ");
+        con.desconectar();
+    }
 }

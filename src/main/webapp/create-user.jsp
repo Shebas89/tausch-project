@@ -6,7 +6,7 @@
 <%@page import="logica.Usuario"%>
 <%@page import="logica.LogicaUsuarios"%>
 
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page contentType="text/html" pageEncoding="UTF-8" language="java" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -99,8 +99,9 @@
                                     out.println("El usuario ya se encuentra registrado");
                             }
                         %>
-                        <div class="col-xs-12 col-sm-3">
-                            <button type="submit" class="btn btn-outline-primary" style="float: right;">Registrar</button>
+                        <div class="col-md-12 text-center">
+                            <button type="submit" name="btnSubmit" class="btn btn-outline-primary">Registrar</button>
+                            <a href="login.jsp"><button type="button" name="btnCancel" id="btnCancel" value="cancel" class="btn btn-secondary">Cancelar</button></a>
                         </div>
                     </div>
                 </form>
