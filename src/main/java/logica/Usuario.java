@@ -11,7 +11,7 @@ package logica;
 public class Usuario {
     private int id;
     private int eliminado;
-    private String nombre;
+    private String unombre;
     private String apellido;
     private String Username;
     private String tipo_documento;
@@ -21,14 +21,15 @@ public class Usuario {
     private String fecha_nacimiento;
     private String contrasena;
     private int contrasena_recuperacion;
+    private String urole;
 
     public Usuario() {
     }
 
-    public Usuario(int id, int eliminado, String nombre, String apellido, String Username, String tipo_documento, long documento_identidad, String email, long telefono, String fecha_nacimiento, String contrasena, int contrasena_recuperacion) {
+    public Usuario(int id, int eliminado, String unombre, String apellido, String Username, String tipo_documento, long documento_identidad, String email, long telefono, String fecha_nacimiento, String contrasena, int contrasena_recuperacion) {
         this.id = id;
         this.eliminado = eliminado;
-        this.nombre = nombre;
+        this.unombre = unombre;
         this.apellido = apellido;
         this.Username = Username;
         this.tipo_documento = tipo_documento;
@@ -38,11 +39,12 @@ public class Usuario {
         this.fecha_nacimiento = fecha_nacimiento;
         this.contrasena = contrasena;
         this.contrasena_recuperacion = contrasena_recuperacion;
+        this.urole = "usuario";
     }
 
-    public Usuario(int eliminado, String nombre, String apellido, String Username, String tipo_documento, long documento_identidad, String email, long telefono, String fecha_nacimiento, String contrasena, int contrasena_recuperacion) {
+    public Usuario(int eliminado, String unombre, String apellido, String Username, String tipo_documento, long documento_identidad, String email, long telefono, String fecha_nacimiento, String contrasena, int contrasena_recuperacion) {
         this.eliminado = eliminado;
-        this.nombre = nombre;
+        this.unombre = unombre;
         this.apellido = apellido;
         this.Username = Username;
         this.tipo_documento = tipo_documento;
@@ -52,11 +54,12 @@ public class Usuario {
         this.fecha_nacimiento = fecha_nacimiento;
         this.contrasena = contrasena;
         this.contrasena_recuperacion = contrasena_recuperacion;
+        this.urole = "usuario";
     }
 
-    public Usuario(String nombre, String apellido, String username, String tipo_documento, int documento_identidad, String email, int telefono, String fecha_nacimiento, String contrasena) {
+    public Usuario(String unombre, String apellido, String username, String tipo_documento, int documento_identidad, String email, int telefono, String fecha_nacimiento, String contrasena) {
         this.eliminado = 0;
-        this.nombre = nombre;
+        this.unombre = unombre;
         this.apellido = apellido;
         this.Username = username;
         this.tipo_documento = tipo_documento;
@@ -66,14 +69,27 @@ public class Usuario {
         this.fecha_nacimiento = fecha_nacimiento;
         this.contrasena = contrasena;
         this.contrasena_recuperacion = 0;
+        this.urole = "usuario";
+    }
+
+    public Usuario(int id, int eliminado, String unombre, String apellido, String username, String tipo_documento, long documento_identidad, String email, long telefono, String fecha_nacimiento, String contrasena, int contrasena_recuperacion, String role) {
+        this.id = id;
+        this.eliminado = eliminado;
+        this.unombre = unombre;
+        this.apellido = apellido;
+        this.Username = username;
+        this.tipo_documento = tipo_documento;
+        this.documento_identidad = documento_identidad;
+        this.email = email;
+        this.telefono = telefono;
+        this.fecha_nacimiento = fecha_nacimiento;
+        this.contrasena = contrasena;
+        this.contrasena_recuperacion = contrasena_recuperacion;
+        this.urole = role;
     }
 
     public int getId() {
         return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public int getEliminado() {
@@ -84,12 +100,12 @@ public class Usuario {
         this.eliminado = eliminado;
     }
 
-    public String getNombre() {
-        return nombre;
+    public String getUNombre() {
+        return unombre;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setUNombre(String unombre) {
+        this.unombre = unombre;
     }
 
     public String getApellido() {
@@ -148,6 +164,14 @@ public class Usuario {
         this.contrasena_recuperacion = contrasena_recuperacion;
     }
 
+    public String getRole() {
+        return urole;
+    }
+
+    public void setRole(String role) {
+        this.urole = role;
+    }
+
     public String getTipo_documento() {
         return tipo_documento;
     }
@@ -166,6 +190,6 @@ public class Usuario {
 
     @Override
     public String toString() {
-        return "Usuario{" + "id=" + id + ", eliminado=" + eliminado + ", nombre=" + nombre + ", apellido=" + apellido + ", Username=" + Username + ", tipo_documento=" + tipo_documento + ", documento_identidad=" + documento_identidad + ", email=" + email + ", telefono=" + telefono + ", fecha_nacimiento=" + fecha_nacimiento + ", contrasena=" + contrasena + ", contrasena_recuperacion=" + contrasena_recuperacion + '}';
+        return "Usuario{" + "id=" + id + ", eliminado=" + eliminado + ", unombre=" + unombre + ", apellido=" + apellido + ", Username=" + Username + ", tipo_documento=" + tipo_documento + ", documento_identidad=" + documento_identidad + ", email=" + email + ", telefono=" + telefono + ", fecha_nacimiento=" + fecha_nacimiento + ", contrasena=" + contrasena + ", contrasena_recuperacion=" + contrasena_recuperacion +", role="+urole+"}";
     }   
 }

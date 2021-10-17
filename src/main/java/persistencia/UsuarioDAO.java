@@ -17,7 +17,7 @@ public class UsuarioDAO {
     public int guardarNuevoUsuario(Usuario u) {
         ConexionBD con = new ConexionBD();
         int eliminado = u.getEliminado();
-        String nombre = u.getNombre();
+        String unombre = u.getUNombre();
         String apellido = u.getApellido();
         String username = u.getUsername();
         String tipo_documento = u.getTipo_documento();
@@ -27,9 +27,10 @@ public class UsuarioDAO {
         String fecha_nacimiento = u.getFecha_nacimiento();
         String contrasena = u.getContrasena();
         int contrasena_recuperacion = u.getContrasena_recuperacion();
+        String urole = u.getRole();
         
-        String sql = "INSERT INTO `dbtausch`.`tausch-usuarios` (eliminado, nombre, apellido, username, tipo_documento, documento_identidad, email, telefono, fecha_nacimiento, contrasena, contrasena_recuperacion) "+
-                     "VALUES ("+eliminado+",'"+nombre+"', '"+apellido+"', '"+username+"', '"+tipo_documento+"', "+documento_identidad+", '"+email+"', "+telefono+", '"+fecha_nacimiento+"', '"+contrasena+"', "+contrasena_recuperacion+");";
+        String sql = "INSERT INTO `dbtausch`.`tausch-usuarios` (eliminado, nombre, apellido, username, tipo_documento, documento_identidad, email, telefono, fecha_nacimiento, contrasena, contrasena_recuperacion, urole) "+
+                     "VALUES ("+eliminado+",'"+unombre+"', '"+apellido+"', '"+username+"', '"+tipo_documento+"', "+documento_identidad+", '"+email+"', "+telefono+", '"+fecha_nacimiento+"', '"+contrasena+"', "+contrasena_recuperacion+",'"+urole+"');";
         ResultSet rs = con.ejecutarInsert(sql);
         int id = 0;
         try {
@@ -48,13 +49,13 @@ public class UsuarioDAO {
         ArrayList<Usuario> lista = new ArrayList<>();
         ConexionBD con = new ConexionBD();
         String query = "SELECT id, eliminado, nombre, apellido, username, tipo_documento, documento_identidad, email, " +
-                     "telefono, fecha_nacimiento, contrasena, contrasena_recuperacion FROM `dbtausch`.`tausch-usuarios`";
+                     "telefono, fecha_nacimiento, contrasena, contrasena_recuperacion, urole FROM `dbtausch`.`tausch-usuarios`";
         ResultSet rs = con.ejecutarQuery(query);
         try {
             while (rs.next()) {
                 int id = rs.getInt("id");
                 int eliminado = rs.getInt("eliminado");
-                String nombre = rs.getString("nombre");
+                String unombre = rs.getString("nombre");
                 String apellido = rs.getString("apellido");
                 String username = rs.getString("username");
                 String tipo_documento = rs.getString("tipo_documento");
@@ -64,6 +65,7 @@ public class UsuarioDAO {
                 String fecha_nacimiento= rs.getString("fecha_nacimiento");
                 String contrasena = rs.getString("contrasena");
                 int contrasena_recuperacion = rs.getInt("contrasena_recuperacion");
+                String urole = rs.getString("urole");
                 Usuario j = new Usuario();
                 lista.add(j);
             }
@@ -79,14 +81,14 @@ public class UsuarioDAO {
         Usuario u = null;
         ConexionBD con = new ConexionBD();
         String query = "SELECT id, eliminado, nombre, apellido, username, tipo_documento, documento_identidad, email, " +
-                       "telefono, fecha_nacimiento, contrasena, contrasena_recuperacion FROM `dbtausch`.`tausch-usuarios`" +
+                       "telefono, fecha_nacimiento, contrasena, contrasena_recuperacion, urole FROM `dbtausch`.`tausch-usuarios`" +
                        "WHERE username = '" + usuario + "' or email = '"+ usuario +"';";
         ResultSet rs = con.ejecutarQuery(query);
         try {
             while (rs.next()) {
                 int id = rs.getInt("id");
                 int eliminado = rs.getInt("eliminado");
-                String nombre = rs.getString("nombre");
+                String unombre = rs.getString("nombre");
                 String apellido = rs.getString("apellido");
                 String username = rs.getString("username");
                 String tipo_documento = rs.getString("tipo_documento");
@@ -96,7 +98,8 @@ public class UsuarioDAO {
                 String fecha_nacimiento= rs.getString("fecha_nacimiento");
                 String contrasena = rs.getString("contrasena");
                 int contrasena_recuperacion = rs.getInt("contrasena_recuperacion");
-                u = new Usuario(id,eliminado,nombre,apellido,username,tipo_documento,documento_identidad,email,telefono,fecha_nacimiento,contrasena,contrasena_recuperacion);
+                String urole = rs.getString("urole");
+                u = new Usuario(id,eliminado,unombre,apellido,username,tipo_documento,documento_identidad,email,telefono,fecha_nacimiento,contrasena,contrasena_recuperacion,urole);
             }
         } catch (SQLException ex) {
             con.desconectar();
@@ -108,7 +111,7 @@ public class UsuarioDAO {
 
     public int actualizarUsuario(Usuario u) {
         String sql = "UPDATE `dbtausch`.`tausch-usuarios` " +
-                "SET nombre = '" + u.getNombre() + "', username = '" + u.getUsername()+ "', contrasena = '" + u.getContrasena() + "', email = '" + u.getEmail() + "', contrasena_recuperacion = '" + u.getContrasena_recuperacion() + "', eliminado = '" + u.getEliminado() + "' " +
+                "SET nombre = '" + u.getUNombre() + "', username = '" + u.getUsername()+ "', contrasena = '" + u.getContrasena() + "', email = '" + u.getEmail() + "', contrasena_recuperacion = '" + u.getContrasena_recuperacion() + "', eliminado = '" + u.getEliminado() + "' " +
                 "WHERE id = " + u.getId() + " ";
         ConexionBD con = new ConexionBD();
         return con.ejecutarUpdate(sql);

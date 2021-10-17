@@ -25,9 +25,9 @@ public class ProductoDAO {
         ResultSet rs = con.ejecutarQuery(query);
         try {
             while (rs.next()) {
-                int id = rs.getInt("id");
+                int pid = rs.getInt("id");
                 int disponible = rs.getInt("disponible");
-                String nombre = rs.getString("nombre");
+                String pnombre = rs.getString("nombre");
                 String categoria = rs.getString("categoria");
                 int cantidad = rs.getInt("cantidad");
                 String medida = rs.getString("medida");
@@ -50,7 +50,7 @@ public class ProductoDAO {
         return lista;
     }
         
-    public Producto consultarProducto(int idAConsultar) {
+    /*public Producto consultarProducto(int idAConsultar) {
         Producto p = null;
         ConexionBD con = new ConexionBD();
         String sql = "SELECT id, disponible, nombre, categoria, cantidad, medida, " +
@@ -60,29 +60,29 @@ public class ProductoDAO {
         ResultSet rs = con.ejecutarQuery(sql);
         try {
             if (rs.next()) {
-                int id = rs.getInt("id");
+                int pid = rs.getInt("id");
                 int disponible = rs.getInt("disponible");
-                String nombre = rs.getString("nombre");
+                String pnombre = rs.getString("nombre");
                 String categoria = rs.getString("categoria");
                 int cantidad = rs.getInt("cantidad");
                 String medida = rs.getString("medida");
                 String direccion = rs.getString("fechacompra");
                 String ciudad = rs.getString("ciudad");
                 int id_usuario = rs.getInt("id_usuario");
-                Date fecha_publicacion = rs.getDate("fecha_publicacion");
-                Date fecha_disponible = rs.getDate("fecha_disponible");
+                String fecha_publicacion = rs.getString("fecha_publicacion");
+                String fecha_disponible = rs.getString("fecha_disponible");
                 String descripcion = rs.getString("descripcion");
                 String estado = rs.getString("estado");
                 String imagen = rs.getString("imagen");
-                p = new Producto(id, disponible, categoria, cantidad, medida, direccion, ciudad, id_usuario, fecha_publicacion, fecha_disponible, descripcion, estado, imagen);
             }
+            p = new Producto(pid, disponibilidad, pnombre, categotia, cantidad, medida, direccion, ciudad, id_usuario, fecha_publicacion, fecha_disponible, estado, imagen);
         } catch (SQLException ex) {
             con.desconectar();
             return p;
         }
         con.desconectar();
         return p;
-    }
+    }*/
     
     public ArrayList<Producto> consultarProductoPorFiltro(String filtro) {
         ArrayList<Producto> lista = new ArrayList<>();
@@ -98,21 +98,21 @@ public class ProductoDAO {
         ResultSet rs = con.ejecutarQuery(sql);
         try {
             while (rs.next()) {
-                int id = rs.getInt("id");
+                int pid = rs.getInt("id");
                 int disponible = rs.getInt("disponible");
-                String nombre = rs.getString("nombre");
+                String pnombre = rs.getString("nombre");
                 String categoria = rs.getString("categoria");
                 int cantidad = rs.getInt("cantidad");
                 String medida = rs.getString("medida");
                 String direccion = rs.getString("fechacompra");
                 String ciudad = rs.getString("ciudad");
                 int id_usuario = rs.getInt("id_usuario");
-                Date fecha_publicacion = rs.getDate("fecha_publicacion");
-                Date fecha_disponible = rs.getDate("fecha_disponible");
+                String fecha_publicacion = rs.getString("fecha_publicacion");
+                String fecha_disponible = rs.getString("fecha_disponible");
                 String descripcion = rs.getString("descripcion");
                 String estado = rs.getString("estado");
                 String imagen = rs.getString("imagen");
-                Producto j = new Producto(id, disponible, categoria, cantidad, medida, direccion, ciudad, id_usuario, fecha_publicacion, fecha_disponible, descripcion, estado, imagen);
+                Producto j = new Producto(pid, pnombre, disponible, categoria, cantidad, medida, direccion, ciudad, id_usuario, fecha_publicacion, fecha_disponible, descripcion, estado, imagen);
                 lista.add(j);
             }
         } catch (SQLException ex) {
@@ -126,22 +126,22 @@ public class ProductoDAO {
     public int guardarNuevoProducto(Producto p) {
         ConexionBD con = new ConexionBD();
         int disponible = p.getDisponible();
-        String nombre = p.getNombre();
+        String pnombre = p.getPnombre();
         String categoria = p.getCategoria();
         int cantidad = p.getCantidad();
         String medida = p.getMedida();
         String direccion = p.getDireccion();
         String ciudad = p.getCiudad();
         int id_usuario = p.getId_usuario();
-        Date fecha_publicacion = p.getFecha_publicacion();
-        Date fecha_disponible = p.getFecha_disponible();
+        String fecha_publicacion = p.getFecha_publicacion();
+        String fecha_disponible = p.getFecha_disponible();
         String descripcion = p.getDescripcion();
         String estado = p.getEstado();
         String imagen = p.getFoto();
         
         String sql = "INSERT INTO `tausch-productos` (disponible, nombre, categoria, cantidad, medida, direccion, ciudad, " +
                      "id_usuario, fecha_publicacion, fecha_disponible, descripcion, estado, imagen) "+
-                     "VALUES ("+ disponible +",'"+nombre+"', '"+categoria+"', "+cantidad+", '"+medida+"', '"+direccion+
+                     "VALUES ("+ disponible +",'"+pnombre+"', '"+categoria+"', "+cantidad+", '"+medida+"', '"+direccion+
                      "', '"+ciudad+"', "+id_usuario+", '"+fecha_publicacion+"', '"+fecha_disponible+"', '"+descripcion+"', '"+estado+"', '"+imagen+"') ";
         ResultSet rs = con.ejecutarInsert(sql);
         int id = 0;
@@ -159,25 +159,25 @@ public class ProductoDAO {
         
     public int guardarProductoExistente(Producto p) {
         ConexionBD con = new ConexionBD();
-        int id = p.getId();
+        int pid = p.getPid();
         int disponible = p.getDisponible();
-        String nombre = p.getNombre();
+        String pnombre = p.getPnombre();
         String categoria = p.getCategoria();
         int cantidad = p.getCantidad();
         String medida = p.getMedida();
         String direccion = p.getDireccion();
         String ciudad = p.getCiudad();
         int id_usuario = p.getId_usuario();
-        Date fecha_publicacion = p.getFecha_publicacion();
-        Date fecha_disponible = p.getFecha_disponible();
+        String fecha_publicacion = p.getFecha_publicacion();
+        String fecha_disponible = p.getFecha_disponible();
         String descripcion = p.getDescripcion();
         String estado = p.getEstado();
         String imagen = p.getFoto();
         
         String sql = "UPDATE `tausch-productos` "+
-                     "SET disponible = "+disponible+", nombre = '" + nombre + "' , categoria = '" + categoria + "' , cantidad = " + cantidad + ", medida = '" + medida + "', direccion = '" + direccion + "' " + 
+                     "SET disponible = "+disponible+", nombre = '" + pnombre + "' , categoria = '" + categoria + "' , cantidad = " + cantidad + ", medida = '" + medida + "', direccion = '" + direccion + "' " +
                      ", ciudad = '" +ciudad+ "', id_usuario = '"+id_usuario+"', fecha_publicacion = '"+fecha_publicacion+"', fecha_disponible = '"+fecha_disponible+"', descripcion = '"+descripcion+"', estado = '"+ estado+"', imagen = '"+imagen+"'"+
-                     "WHERE id = " + id + " ";
+                     "WHERE id = " + pid + " ";
         int filas = con.ejecutarUpdate(sql);
         con.desconectar();
         return filas;

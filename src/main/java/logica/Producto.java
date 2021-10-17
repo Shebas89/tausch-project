@@ -5,24 +5,22 @@
  */
 package logica;
 
-import java.sql.Date;
-
 /**
  *
  * @author svelandia
  */
 public class Producto {
-    private int id;
+    private int pid;
     private int disponible;
-    private String nombre;
+    private String pnombre;
     private String categoria;
     private int cantidad;
     private String medida;
     private String direccion;
     private String ciudad;
     private int id_usuario;
-    private Date fecha_publicacion;
-    private Date fecha_disponible;
+    private String fecha_publicacion;
+    private String fecha_disponible;
     private String descripcion;
     private String estado;
     private String foto;
@@ -30,26 +28,10 @@ public class Producto {
     public Producto() {
     }
 
-    public Producto(int disponible, String nombre, String categoria, int cantidad, String medida, String direccion, String ciudad, int id_usuario, Date fecha_publicacion, Date fecha_disponible, String descripcion, String estado, String foto) {
+    public Producto(int pid, String pnombre, int disponible, String categoria, int cantidad, String medida, String direccion, String ciudad, int id_usuario, String fecha_publicacion, String fecha_disponible, String descripcion, String estado, String imagen) {
+        this.pid = pid;
         this.disponible = disponible;
-        this.nombre = nombre;
-        this.categoria = categoria;
-        this.cantidad = cantidad;
-        this.medida = medida;
-        this.direccion = direccion;
-        this.ciudad = ciudad;
-        this.id_usuario = id_usuario;
-        this.fecha_publicacion = fecha_publicacion;
-        this.fecha_disponible = fecha_disponible;
-        this.descripcion = descripcion;
-        this.estado = estado;
-        this.foto = foto;
-    }
-
-    public Producto(int id, int disponible, String categoria, int cantidad, String medida, String direccion, String ciudad, int id_usuario, Date fecha_publicacion, Date fecha_disponible, String descripcion, String estado, String foto) {
-        this.id = id;
-        this.disponible = disponible;
-        this.nombre = nombre;
+        this.pnombre = pnombre;
         this.categoria = categoria;
         this.cantidad = cantidad;
         this.medida = medida;
@@ -63,12 +45,28 @@ public class Producto {
         this.foto = "";
     }
 
-    public int getId() {
-        return id;
+    public Producto(int pdisponible, String pnombre, String pcategoria, int pcantidad, String pmedida, String pdireccion, String pciudad, int puid, String pfpub, String pfdis, String pdescripcion, String pestado) {
+        this.disponible = pdisponible;
+        this.pnombre = pnombre;
+        this.categoria = pcategoria;
+        this.cantidad = pcantidad;
+        this.medida = pmedida;
+        this.direccion = pdireccion;
+        this.ciudad = pciudad;
+        this.id_usuario = puid;
+        this.fecha_publicacion = pfpub;
+        this.fecha_disponible = pfdis;
+        this.descripcion = pdescripcion;
+        this.estado = pestado;
+        this.foto = "";
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public int getPid() {
+        return pid;
+    }
+
+    public void setPid(int pid) {
+        this.pid = pid;
     }
 
     public int getDisponible() {
@@ -79,12 +77,12 @@ public class Producto {
         this.disponible = disponible;
     }
 
-    public String getNombre() {
-        return nombre;
+    public String getPnombre() {
+        return pnombre;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setPnombre(String pnombre) {
+        this.pnombre = pnombre;
     }
 
     public String getCategoria() {
@@ -135,19 +133,19 @@ public class Producto {
         this.id_usuario = id_usuario;
     }
 
-    public Date getFecha_publicacion() {
+    public String getFecha_publicacion() {
         return fecha_publicacion;
     }
 
-    public void setFecha_publicacion(Date fecha_publicacion) {
+    public void setFecha_publicacion(String fecha_publicacion) {
         this.fecha_publicacion = fecha_publicacion;
     }
 
-    public Date getFecha_disponible() {
+    public String getFecha_disponible() {
         return fecha_disponible;
     }
 
-    public void setFecha_disponible(Date fecha_disponible) {
+    public void setFecha_disponible(String fecha_disponible) {
         this.fecha_disponible = fecha_disponible;
     }
 
@@ -177,6 +175,21 @@ public class Producto {
 
     @Override
     public String toString() {
-        return "Producto{" + "id=" + id + ", disponible=" + disponible + ", nombre=" + nombre + ", categoria=" + categoria + ", cantidad=" + cantidad + ", medida=" + medida + ", direccion=" + direccion + ", ciudad=" + ciudad + ", id_usuario=" + id_usuario + ", fecha_publicacion=" + fecha_publicacion + ", fecha_disponible=" + fecha_disponible + ", descripcion=" + descripcion + ", estado=" + estado + ", foto=" + foto + '}';
+        return "Producto{" +
+                "pid=" + pid +
+                ", disponible=" + disponible +
+                ", pnombre='" + pnombre + '\'' +
+                ", categoria='" + categoria + '\'' +
+                ", cantidad=" + cantidad +
+                ", medida='" + medida + '\'' +
+                ", direccion='" + direccion + '\'' +
+                ", ciudad='" + ciudad + '\'' +
+                ", id_usuario=" + id_usuario +
+                ", fecha_publicacion='" + fecha_publicacion + '\'' +
+                ", fecha_disponible='" + fecha_disponible + '\'' +
+                ", descripcion='" + descripcion + '\'' +
+                ", estado='" + estado + '\'' +
+                ", foto='" + foto + '\'' +
+                '}';
     }
 }

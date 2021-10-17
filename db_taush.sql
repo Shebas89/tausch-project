@@ -41,6 +41,7 @@ CREATE TABLE `dbtausch`.`tausch-usuarios` (
   `fecha_nacimiento` date  NOT NULL,
   `contrasena` varchar(20) COLLATE utf8mb4_bin NOT NULL,
   `contrasena_recuperacion` int NOT NULL DEFAULT '0',
+  `urole` varchar(20) COLLATE utf8mb4_bin NOT NULL,
   PRIMARY KEY (`id`),
   KEY `tausch_usuarios_id_IDX` (`id`,`username`,`documento_identidad`,`email`) USING BTREE
 )
@@ -49,5 +50,5 @@ DEFAULT CHARSET=utf8mb4
 COLLATE=utf8mb4_bin;
 
 # add admin user
-INSERT INTO `dbtausch`.`tausch-usuarios`(eliminado, nombre, apellido, username, tipo_documento, documento_identidad, email, telefono, fecha_nacimiento, contrasena, contrasena_recuperacion)
-VALUES(0, 'admin', 'tausch', 'admin', 'cc', 1, 'admin@tausch.com', 3214567890, STR_TO_DATE('1-01-2012', '%d-%m-%Y'), 'admin-tausch', 0);
+INSERT INTO `dbtausch`.`tausch-usuarios`(eliminado, nombre, apellido, username, tipo_documento, documento_identidad, email, telefono, fecha_nacimiento, contrasena, contrasena_recuperacion, urole)
+VALUES(0, 'admin', 'tausch', 'admin', 'cc', 1, 'admin@tausch.com', 3214567890, STR_TO_DATE('1-01-2012', '%d-%m-%Y'), 'admin-tausch', 0,'admin');

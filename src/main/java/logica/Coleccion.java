@@ -28,22 +28,12 @@ public class Coleccion {
     public boolean cargarProducctos() {
         ProductoDAO dao_p = new ProductoDAO();
         lista_prod = dao_p.consultarProductos();
-        if (lista_prod.size() > 0) {
-            return true;
-        }
-        else {
-            return false;
-        }
+        return lista_prod.size() > 0;
     }
     
     public boolean cargarUsuario() {
         UsuarioDAO dao_u = new UsuarioDAO();
         lista_usuario = dao_u.consultarUsuarios();
-        if (lista_usuario.size() > 0) {
-            return true;
-        }
-        else {
-            return false;
-        }
+        return lista_usuario.size() > 0;
     } 
 }

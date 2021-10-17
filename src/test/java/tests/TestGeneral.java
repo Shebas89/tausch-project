@@ -56,7 +56,7 @@ public class TestGeneral {
         DateFormat df = new SimpleDateFormat("MM-dd-yyyy");
         Date sqlDate1 = new java.sql.Date(df.parse("02-04-2020").getTime());
         Date sqlDate2 = new java.sql.Date(df.parse("02-28-2020").getTime());
-        Producto p = new Producto(1,"Producto de prueba","Categoria prueba", 1, "kg","direccion test", "Ciudad test", 1, sqlDate1, sqlDate2,"descripcion test","estado test","imagen test");
+        Producto p = new Producto(1,"Producto de prueba","Categoria prueba", 1, "kg","direccion test", "Ciudad test", 1, "2020-04-02", "2020-04-28","descripcion test","estado test");
         int id = dao.guardarNuevoProducto(p);
         Assert.assertTrue(id > 0, "No se guardó dato de un producto. ");
         String sql = "DELETE FROM `tausch-productos` WHERE id = " + id;
@@ -86,8 +86,8 @@ public class TestGeneral {
         int id = dao.guardarNuevoUsuario(u);
         Assert.assertTrue(id > 0, "No se guardó dato de un usuario. ");
         Usuario u1 = dao.consultarUsuario("Utest");
-        u.setContrasena_recuperacion(1);
-        u.setContrasena("password-test");
+        u1.setContrasena_recuperacion(1);
+        u1.setContrasena("password-test");
         int id_update = dao.actualizarUsuario(u1);
         Assert.assertTrue(id_update > 0, "No se actualizo la informacion del usuario");
         String sql = "DELETE FROM `tausch-usuarios` WHERE id = " + u1.getId();
