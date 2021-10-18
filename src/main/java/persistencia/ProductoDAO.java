@@ -50,13 +50,13 @@ public class ProductoDAO {
         return lista;
     }
         
-    /*public Producto consultarProducto(int idAConsultar) {
+    public Producto consultarProducto(String producto) {
         Producto p = null;
         ConexionBD con = new ConexionBD();
         String sql = "SELECT id, disponible, nombre, categoria, cantidad, medida, " +
                      "direccion, ciudad, id_usuario, fecha_publicacion, fecha_disponible, " +
                      "descripcion, estado FROM `tausch-productos` "+
-                     "WHERE id = " + idAConsultar + ";";
+                     "WHERE nombre = '" + producto + "';";
         ResultSet rs = con.ejecutarQuery(sql);
         try {
             if (rs.next()) {
@@ -74,15 +74,15 @@ public class ProductoDAO {
                 String descripcion = rs.getString("descripcion");
                 String estado = rs.getString("estado");
                 String imagen = rs.getString("imagen");
+                p = new Producto(pid, disponible, pnombre, categoria, cantidad, medida, direccion, ciudad, id_usuario, fecha_publicacion, fecha_disponible, descripcion, estado, imagen);
             }
-            p = new Producto(pid, disponibilidad, pnombre, categotia, cantidad, medida, direccion, ciudad, id_usuario, fecha_publicacion, fecha_disponible, estado, imagen);
         } catch (SQLException ex) {
             con.desconectar();
             return p;
         }
         con.desconectar();
         return p;
-    }*/
+    }
     
     public ArrayList<Producto> consultarProductoPorFiltro(String filtro) {
         ArrayList<Producto> lista = new ArrayList<>();
@@ -112,7 +112,7 @@ public class ProductoDAO {
                 String descripcion = rs.getString("descripcion");
                 String estado = rs.getString("estado");
                 String imagen = rs.getString("imagen");
-                Producto j = new Producto(pid, pnombre, disponible, categoria, cantidad, medida, direccion, ciudad, id_usuario, fecha_publicacion, fecha_disponible, descripcion, estado, imagen);
+                Producto j = new Producto(pid, disponible, pnombre, categoria, cantidad, medida, direccion, ciudad, id_usuario, fecha_publicacion, fecha_disponible, descripcion, estado, imagen);
                 lista.add(j);
             }
         } catch (SQLException ex) {
@@ -182,4 +182,6 @@ public class ProductoDAO {
         con.desconectar();
         return filas;
     }
+
+
 }

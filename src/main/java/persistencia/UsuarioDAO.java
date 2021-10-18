@@ -111,7 +111,7 @@ public class UsuarioDAO {
 
     public int actualizarUsuario(Usuario u) {
         String sql = "UPDATE `dbtausch`.`tausch-usuarios` " +
-                "SET nombre = '" + u.getUNombre() + "', username = '" + u.getUsername()+ "', contrasena = '" + u.getContrasena() + "', email = '" + u.getEmail() + "', contrasena_recuperacion = '" + u.getContrasena_recuperacion() + "', eliminado = '" + u.getEliminado() + "' " +
+                "SET nombre = '" + u.getUNombre() + "', username = '" + u.getUsername()+ "', contrasena = '" + u.getContrasena() + "', email = '" + u.getEmail() + "', contrasena_recuperacion = '" + u.getContrasena_recuperacion() + "', urole ='"+ u.getRole() +"', eliminado = '" + u.getEliminado() + "' " +
                 "WHERE id = " + u.getId() + " ";
         ConexionBD con = new ConexionBD();
         return con.ejecutarUpdate(sql);

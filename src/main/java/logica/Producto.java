@@ -28,7 +28,7 @@ public class Producto {
     public Producto() {
     }
 
-    public Producto(int pid, String pnombre, int disponible, String categoria, int cantidad, String medida, String direccion, String ciudad, int id_usuario, String fecha_publicacion, String fecha_disponible, String descripcion, String estado, String imagen) {
+    public Producto(int pid, int disponible, String pnombre, String categoria, int cantidad, String medida, String direccion, String ciudad, int id_usuario, String fecha_publicacion, String fecha_disponible, String descripcion, String estado, String imagen) {
         this.pid = pid;
         this.disponible = disponible;
         this.pnombre = pnombre;
@@ -42,7 +42,7 @@ public class Producto {
         this.fecha_disponible = fecha_disponible;
         this.descripcion = descripcion;
         this.estado = estado;
-        this.foto = "";
+        this.foto = imagen;
     }
 
     public Producto(int pdisponible, String pnombre, String pcategoria, int pcantidad, String pmedida, String pdireccion, String pciudad, int puid, String pfpub, String pfdis, String pdescripcion, String pestado) {

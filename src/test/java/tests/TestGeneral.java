@@ -13,10 +13,7 @@ import org.testng.annotations.Test;
 import persistencia.ConexionBD;
 import persistencia.ProductoDAO;
 import persistencia.UsuarioDAO;
-import java.sql.Date;  
-import java.text.DateFormat;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 
 /**
  *
@@ -50,24 +47,21 @@ public class TestGeneral {
         Assert.assertTrue(dao.consultarUsuario("admin").getUsername().contentEquals("admin"), "No se cargaron datos de productos. ");
     }
     
-    @Ignore
-    public void verificarInsercionProducto() throws ParseException {
+    @Test
+    public void verificarInsercionProducto() {
         ProductoDAO dao = new ProductoDAO();
-        DateFormat df = new SimpleDateFormat("MM-dd-yyyy");
-        Date sqlDate1 = new java.sql.Date(df.parse("02-04-2020").getTime());
-        Date sqlDate2 = new java.sql.Date(df.parse("02-28-2020").getTime());
-        Producto p = new Producto(1,"Producto de prueba","Categoria prueba", 1, "kg","direccion test", "Ciudad test", 1, "2020-04-02", "2020-04-28","descripcion test","estado test");
+        Producto p = new Producto(1,"Producto-de-prueba","Categoria-prueba", 1, "kg","direccion-test", "Ciudad test", 1, "2020-04-02", "2020-04-28","descripcion-test","estado-test");
         int id = dao.guardarNuevoProducto(p);
         Assert.assertTrue(id > 0, "No se guardó dato de un producto. ");
-        String sql = "DELETE FROM `tausch-productos` WHERE id = " + id;
+        String sql = "DELETE FROM `tausch-productos` WHERE nombre = 'Producto-de-prueba'";
         ConexionBD con = new ConexionBD();
         int cant = con.ejecutarUpdate(sql);
-        Assert.assertTrue(cant == 1, "No se logró hacer limpieza del dato de prueba de un producto ingresado. ");
+        Assert.assertEquals(cant, 1, "No se logró hacer limpieza del dato de prueba de un producto ingresado. ");
         con.desconectar();
     }
     
     @Test
-    public void verificarInsercionUsuario() throws ParseException {
+    public void verificarInsercionUsuario() {
         UsuarioDAO dao = new UsuarioDAO();
         Usuario u = new Usuario("User","Test","Utest","cc",12389,"user@test.com",32067,"1989-10-17","test-password");
         int id = dao.guardarNuevoUsuario(u);
@@ -75,12 +69,12 @@ public class TestGeneral {
         String sql = "DELETE FROM `tausch-usuarios` WHERE id = " + id;
         ConexionBD con = new ConexionBD();
         int cant = con.ejecutarUpdate(sql);
-        Assert.assertTrue(cant == 1, "No se logró hacer limpieza del dato de prueba de un usuario ingresado. ");
+        Assert.assertEquals(cant, 1, "No se logró hacer limpieza del dato de prueba de un usuario ingresado. ");
         con.desconectar();
     }
 
     @Test
-    public void verificarActualizacionUsuario() throws ParseException {
+    public void verificarActualizacionUsuario() {
         UsuarioDAO dao = new UsuarioDAO();
         Usuario u = new Usuario("User","Test","Utest","cc",12389,"user@test.com",32067,"1989-10-17","test-password");
         int id = dao.guardarNuevoUsuario(u);
@@ -93,7 +87,7 @@ public class TestGeneral {
         String sql = "DELETE FROM `tausch-usuarios` WHERE id = " + u1.getId();
         ConexionBD con = new ConexionBD();
         int cant = con.ejecutarUpdate(sql);
-        Assert.assertTrue(cant == 1, "No se logró hacer limpieza del dato de prueba de un usuario ingresado. ");
+        Assert.assertEquals(cant, 1, "No se logró hacer limpieza del dato de prueba de un usuario ingresado. ");
         con.desconectar();
     }
 }

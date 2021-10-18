@@ -5,6 +5,7 @@
   Time: 9:44 PM
   To change this template use File | Settings | File Templates.
 --%>
+<%@page import="logica.Usuario"%>
 <%@page import="logica.LogicaUsuarios"%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
@@ -25,8 +26,14 @@
                         if (user != null && pw != null && pw.equals(pwc)){
                             LogicaUsuarios lu = new LogicaUsuarios();
                             validacion = lu.actualizarContraseña(user,pw);
-                            if (validacion)
+                            if (validacion){
+                    %>
+                    <script language="JavaScript">
+
+                    </script>
+                    <%
                                 response.sendRedirect("index.html");
+                            }
                             else
                                 out.println("No se pudo actualizar la contraseña");
                         }

@@ -39,13 +39,13 @@
                         }
                     %>
                     <div class="row">
-                        <div class="col-xs-12 col-sm-12">
+                        <div class="col-xs-12 col-sm-6">
                             <div class="form-group mb-2">
                                 <label for="nombre">Nombre</label>
                                 <input type="text" name="nombre" id="nombre" class="form-control" required="true">
                             </div>
                         </div>
-                        <div class="col-xs-12 col-sm-12">
+                        <div class="col-xs-12 col-sm-6">
                              <div class="form-group mb-2">
                                 <label for="apellido">Apellido</label>
                                 <input type="text" name="apellido" id="apellido" class="form-control" required="true">
@@ -63,19 +63,23 @@
                                 <input type="password" name="password" id="password" class="form-control" required="true" placeholder="Password">
                             </div>
                         </div>
-                        <div class="col-xs-12 col-sm-3">
+                        <div class="col-xs-12 col-sm-2">
                             <div class="form-group mb-2">
-                                <label for="tdoc">Tipo de documento</label>
-                                <input type="text" name="tdoc" id="tdoc" class="form-control" required="true">
+                                <label for="tdoc" class="form-label">Tipo de documento</label>
+                                <select class="form-select" id="tdoc" name="tdoc>" required>
+                                    <option>CC</option>
+                                    <option>CE</option>
+                                    <option>Pasaporte</option>
+                                </select>
                             </div>
                         </div>
-                        <div class="col-xs-12 col-sm-9">
+                        <div class="col-xs-12 col-sm-4">
                             <div class="form-group mb-2">
-                                <label for="nd">Numero de Docuemento</label>
+                                <label for="nd" class="from-label">Numero de Docuemento</label>
                                 <input type="number" name="nd" id="nd" class="form-control" required="true">
                             </div>
                         </div>
-                        <div class="col-xs-12 col-sm-12">
+                        <div class="col-xs-12 col-sm-6">
                             <div class="form-group mb-2">
                                 <label for="email">Email</label>
                                 <input type="email" name="email" id="email" class="form-control" placeholder="name@example.com" required="true">
@@ -84,7 +88,7 @@
                         <div class="col-xs-12 col-sm-6">
                             <div class="form-group mb-2">
                                 <label for="telefono">Telefono</label>
-                                <input type="number" name="telefono" id="telefono" class="form-control" required="true">
+                                <input type="tel" name="telefono" id="telefono" class="form-control" required="true">
                             </div>
                         </div>
                         <div class="col-xs-12 col-sm-6">

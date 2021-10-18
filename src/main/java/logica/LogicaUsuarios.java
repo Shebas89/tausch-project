@@ -81,4 +81,20 @@ public class LogicaUsuarios {
         else
             return false;
     }
+
+    public boolean usuarioEliminacion(String user){
+        UsuarioDAO udao = new UsuarioDAO();
+        Usuario u = udao.consultarUsuario(user);
+        if (u != null) {
+            u.setEliminado(1);
+            u.setUNombre("disable_"+u.getUsername());
+            u.setEmail("disable_"+u.getEmail());
+            u.setContrasena("disable"+u.getContrasena());
+            u.setRole("disable");
+            udao.actualizarUsuario(u);
+            return true;
+        }
+        else
+            return false;
+    }
 }
